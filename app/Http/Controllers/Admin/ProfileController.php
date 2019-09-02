@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Profilehistory;
 use Carbon\Carbon;
-
+use App\News;
 
 class ProfileController extends Controller
 {
@@ -22,11 +22,11 @@ class ProfileController extends Controller
       $this->validate($request, Profile::$rules);
       
       $profile = new Profile;
-      $form = $request->all();
+      $profile_form = $request->all();
       
-      unset($form['_token']);
+      unset($profile_form['_token']);
       
-      $profile->fill($form);
+      $profile->fill($profile_form);
       $profile->save();
       
       return redirect('admin/profile/create');
